@@ -53,7 +53,10 @@ lungcnet/
 ├── data/
 │   ├── benign/       <- put IQ-OTH/NCCD benign images here
 │   ├── malignant/    <- put IQ-OTH/NCCD malignant images here
-│   └── normal/       <- put IQ-OTH/NCCD normal images here
+│   ├── normal/       <- put IQ-OTH/NCCD normal images here
+│   └── augmented/    <- generated automatically when you run training;
+│                        not something you populate by hand, and not
+│                        something we distribute -- see note below
 └── src/
     ├── model.py       # LungCNET architecture
     ├── data.py        # data loading, splitting, augmentation
