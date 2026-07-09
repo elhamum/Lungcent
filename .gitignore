@@ -1,0 +1,24 @@
+# Data (too large / not yours to redistribute -- link to the dataset instead)
+data/*/*.png
+data/*/*.jpg
+data/*/*.jpeg
+data/*/*.bmp
+data/*/*.tif
+data/*/*.tiff
+
+# Model checkpoints and logs
+checkpoints/
+runs/
+outputs/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
