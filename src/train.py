@@ -83,6 +83,7 @@ def main():
     datagen.fit(X_train)
     train_flow = datagen.flow(
         X_train, y_train_cat, batch_size=train_cfg["batch_size"],
+        seed=cfg["augmentation"].get("seed", 42),
     )
 
     fit_kwargs = dict(

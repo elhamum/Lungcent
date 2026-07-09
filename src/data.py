@@ -113,7 +113,20 @@ def load_and_split_dataset(cfg: dict):
 
 
 def build_augmentation_generator(cfg: dict) -> ImageDataGenerator:
-    """Build the Keras ImageDataGenerator used for the training set only."""
+    """
+    Build the Keras ImageDataGenerator used for the training set only.
+
+    Augmentation choices are deliberately conservative for CT imagery:
+    - rotation/zoom/shift ranges are modest, approximating natural variation
+      in patient positioning rather than arbitrary transforms
+    - horizontal flip is safe here (left/right laterality isn't diagnostic
+      for nodule classification); vertical flip is never applied, since it
+      would invert anatomy (head/feet) in a way that doesn't occur in
+      real scans
+    - fill_mode="constant" with cval=0 fills any exposed border with black,
+      matching the genuinely black background in CT images, rather than
+      "nearest" which smears edge pixels into fabricated texture
+    """
     aug_cfg = cfg["augmentation"]
     return ImageDataGenerator(
         rotation_range=aug_cfg["rotation_range"],
@@ -121,5 +134,7 @@ def build_augmentation_generator(cfg: dict) -> ImageDataGenerator:
         width_shift_range=aug_cfg["width_shift_range"],
         height_shift_range=aug_cfg["height_shift_range"],
         horizontal_flip=aug_cfg["horizontal_flip"],
+        vertical_flip=aug_cfg.get("vertical_flip", False),
         fill_mode=aug_cfg["fill_mode"],
+        cval=aug_cfg.get("cval", 0.0),
     )
