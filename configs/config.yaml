@@ -1,0 +1,41 @@
+# LungCNET training configuration
+# Values marked (assumed) are not explicitly stated in the paper's Methodology
+# section -- edit these to match your actual training run if they differ.
+
+data:
+  data_dir: "data"              # expects data/benign, data/malignant, data/normal
+  image_size: [224, 224]
+  channels: 3
+  test_split: 0.2                # 20% held out for testing, per paper Sec 3.3
+  val_split_within_train: 0.2    # (assumed) 20% of the remaining 80% used for validation
+  seed: 42
+
+augmentation:                    # (assumed ranges) paper specifies rotation/zoom/flip/shift
+                                  # but not the exact magnitudes
+  rotation_range: 20
+  zoom_range: 0.2
+  width_shift_range: 0.2
+  height_shift_range: 0.2
+  horizontal_flip: true
+  fill_mode: "nearest"
+
+model:
+  conv_filters: [32, 64, 128]
+  kernel_size: [3, 3]
+  pool_size: [2, 2]
+  dense_units: [512, 256]
+  dropout_rate: 0.5
+  num_classes: 3
+  class_names: ["benign", "malignant", "normal"]
+
+train:
+  batch_size: 32                 # (assumed)
+  learning_rate: 0.0001           # (assumed)
+  max_epochs: 100                 # (assumed cap) paper reports convergence at 18 epochs
+  early_stopping_patience: 10     # (assumed)
+  use_class_weights: true         # addresses class imbalance, per paper's "Experiment 3"
+  checkpoint_dir: "checkpoints"
+  log_dir: "runs"
+
+evaluate:
+  output_dir: "outputs"

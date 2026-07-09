@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the associated paper."
+title: "LungCNET: A High-Performance Deep CNN Model for Lung Cancer Detection Evaluated Against Widely Used CNN Benchmarks"
+authors:
+  - family-names: "Eskandarnia"
+    given-names: "Elham"
+    affiliation: "Arab Open University, Bahrain"
+  - family-names: "Adepoju"
+    given-names: "Peter"
+    affiliation: "Arab Open University, Bahrain"
+  - family-names: "Kiani"
+    given-names: "Kaveh"
+    affiliation: "University of Salford, UK"
+  - family-names: "Mansouri"
+    given-names: "Taha"
+    affiliation: "University of Salford, UK"
+  - family-names: "BinRajab"
+    given-names: "Ayah"
+    affiliation: "Royal College of Surgeons in Ireland, Bahrain"
+date-released: 2026
+repository-code: "https://github.com/REPLACE-WITH-YOUR-USERNAME/lungcnet"
+license: MIT
