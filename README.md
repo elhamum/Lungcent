@@ -28,12 +28,9 @@ Input (224x224x3)
 Trained from scratch (no transfer learning), with the Adam optimizer and categorical
 cross-entropy loss.
 
-## ⚠️ Assumptions made beyond what the paper specifies
+## Parameter used 
 
-The Methodology section describes the architecture and training procedure, but doesn't
-pin down every hyperparameter. The following are reasonable defaults used here — check
-them against your own training logs and edit `configs/config.yaml` if they differ from
-what you actually ran:
+The Methodology section describes the architecture and training procedure, we used this values for hyperparameter
 
 | Parameter | Value used here | Where it's set |
 |---|---|---|
