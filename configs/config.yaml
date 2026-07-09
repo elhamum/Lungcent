@@ -10,14 +10,17 @@ data:
   val_split_within_train: 0.2    # (assumed) 20% of the remaining 80% used for validation
   seed: 42
 
-augmentation:                    # (assumed ranges) paper specifies rotation/zoom/flip/shift
-                                  # but not the exact magnitudes
-  rotation_range: 20
-  zoom_range: 0.2
-  width_shift_range: 0.2
-  height_shift_range: 0.2
-  horizontal_flip: true
-  fill_mode: "nearest"
+augmentation:                    # CT-scan-appropriate augmentation, see README for rationale
+  rotation_range: 15               # modest range -- approximates natural patient positioning
+                                    # variation, avoids anatomically implausible orientations
+  zoom_range: 0.15
+  width_shift_range: 0.1
+  height_shift_range: 0.1
+  horizontal_flip: true            # left/right chest laterality is not diagnostic for this task
+  vertical_flip: false             # NEVER -- would invert head/feet anatomy
+  fill_mode: "constant"            # CT background is genuinely black; smearing edge pixels
+  cval: 0.0                        # (fill_mode="nearest") would fabricate anatomy that isn't there
+  seed: 42                         # fixed seed for reproducibility of the augmented dataset
 
 model:
   conv_filters: [32, 64, 128]
